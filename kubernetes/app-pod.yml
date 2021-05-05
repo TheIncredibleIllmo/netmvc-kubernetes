@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: webapp-pod
+  labels:
+      app: app
+      type: mvc
+spec:
+  containers:
+    - name: webapp-mvc
+      image: theincredibleillmo/mvcprototype:v1.0
+      ports:
+        - containerPort: 80
+      env:
+        - name: ConnectionStrings__CoursesContext
+          value: Server=mssql-service;Database=OnlineCourses;User=sa;Password=1nCR3d1bl3*

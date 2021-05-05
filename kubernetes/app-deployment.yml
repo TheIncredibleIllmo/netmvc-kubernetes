@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: app-deployment
+  labels:
+    name: app-deployment
+    app: app
+spec:
+  replicas: 3
+  selector:
+    matchLabels: 
+      app: app
+      type: mvc
+  template:
+      metadata: 
+        name: webapp-pod
+        labels:
+          app: app
+          type: mvc
+      spec:
+        containers:
+          - name: webapp-mvc
+            image: theincredibleillmo/mvcprototype:v1.0
+            ports:
+              - containerPort: 80
+            env:
+              - name: ConnectionStrings__CoursesContext
+                value: Server=mssql-service;Database=OnlineCourses;User=sa;Password=1nCR3d1bl3*
